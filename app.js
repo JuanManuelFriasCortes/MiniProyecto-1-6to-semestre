@@ -34,6 +34,7 @@ function showStep(n) {
 
   if (n === 2) buildParticipantsList();
   if (n === 3) buildExclusionsList();
+  if (n === 4) setTimeout(initEventDragDrop, 50);
   if (n === 5) buildQuickDates();
 }
 
@@ -365,3 +366,118 @@ function resetForm() {
 // INIT
 // ─────────────────────────────────────────
 document.addEventListener('DOMContentLoaded', () => showPage('inicio'));
+
+// ─────────────────────────────────────────
+// STEP 4 – DRAG & DROP TIPO DE EVENTO
+// ─────────────────────────────────────────
+
+let draggedChip = null;
+
+function initEventDragDrop() {
+  const chips   = document.querySelectorAll('.event-chip');
+  const dropZone = document.getElementById('event-drop-zone');
+
+  // Reset visual state
+  chips.forEach(chip => {
+    chip.classList.remove('used', 'dragging');
+    chip.style.pointerEvents = '';
+  });
+
+  // Restore chip of currently selected event (if any)
+  const currentVal = document.getElementById('input-evento').value.trim();
+  if (currentVal) {
+    chips.forEach(chip => {
+      if (chip.dataset.label === currentVal) chip.classList.add('used');
+    });
+    showDroppedPreview(
+      currentVal,
+      [...chips].find(c => c.dataset.label === currentVal)?.querySelector('.chip-emoji')?.textContent || '🎉'
+    );
+  }
+
+  // ── Chip events ──
+  chips.forEach(chip => {
+    chip.addEventListener('dragstart', e => {
+      draggedChip = chip;
+      chip.classList.add('dragging');
+      e.dataTransfer.effectAllowed = 'move';
+      e.dataTransfer.setData('text/plain', chip.dataset.label);
+    });
+
+    chip.addEventListener('dragend', () => {
+      chip.classList.remove('dragging');
+      draggedChip = null;
+    });
+
+    // Click también selecciona (por si no quieren arrastrar)
+    chip.addEventListener('click', () => {
+      if (chip.classList.contains('used')) return;
+      clearDroppedEvent();
+      dropEvent(chip.dataset.label, chip.querySelector('.chip-emoji').textContent, chip);
+    });
+  });
+
+  // ── Drop zone events ──
+  dropZone.addEventListener('dragover', e => {
+    e.preventDefault();
+    dropZone.classList.add('drag-over');
+  });
+
+  dropZone.addEventListener('dragleave', e => {
+    if (!dropZone.contains(e.relatedTarget)) {
+      dropZone.classList.remove('drag-over');
+    }
+  });
+
+  dropZone.addEventListener('drop', e => {
+    e.preventDefault();
+    dropZone.classList.remove('drag-over');
+    if (!draggedChip || draggedChip.classList.contains('used')) return;
+    dropEvent(
+      draggedChip.dataset.label,
+      draggedChip.querySelector('.chip-emoji').textContent,
+      draggedChip
+    );
+  });
+}
+
+function dropEvent(label, emoji, chipEl) {
+  // Si ya había un chip en la caja, liberarlo primero
+  const currentLabel = document.getElementById('input-evento').value.trim();
+  if (currentLabel) {
+    document.querySelectorAll('.event-chip').forEach(c => {
+      if (c.dataset.label === currentLabel) c.classList.remove('used');
+    });
+  }
+
+  // Marcar el nuevo chip como usado
+  if (chipEl) chipEl.classList.add('used');
+
+  // Rellenar input
+  document.getElementById('input-evento').value = label;
+
+  // Mostrar preview en drop zone
+  showDroppedPreview(label, emoji);
+}
+
+function showDroppedPreview(label, emoji) {
+  document.getElementById('event-drop-hint').classList.add('d-none');
+  const preview = document.getElementById('event-dropped-preview');
+  preview.classList.remove('d-none');
+  document.getElementById('event-preview-emoji').textContent = emoji;
+  document.getElementById('event-preview-label').textContent = label;
+  document.getElementById('event-drop-zone').classList.add('has-item');
+}
+
+function clearDroppedEvent() {
+  // Restaurar hint
+  document.getElementById('event-drop-hint').classList.remove('d-none');
+  document.getElementById('event-dropped-preview').classList.add('d-none');
+  document.getElementById('event-drop-zone').classList.remove('has-item', 'drag-over');
+
+  // Limpiar input
+  document.getElementById('input-evento').value = '';
+
+  // Desmarcar chips
+  document.querySelectorAll('.event-chip').forEach(c => c.classList.remove('used'));
+}

@@ -94,17 +94,52 @@
         <!-- STEP 4: TIPO DE EVENTO -->
         <div id="step-4" class="card p-4 d-none">
           <h5>¿Para qué celebración es?</h5>
+          <p class="text-muted small mb-2">Arrastra una imagen a la caja, o escribe el nombre directamente.</p>
           <hr/>
-          <div class="d-flex flex-wrap gap-2 mb-3">
-            <button class="btn btn-outline-primary btn-sm" onclick="selectEvent(this,'Día de San Valentín')">San Valentín</button>
-            <button class="btn btn-outline-primary btn-sm" onclick="selectEvent(this,'Intercambio')">Intercambio</button>
-            <button class="btn btn-outline-primary btn-sm" onclick="selectEvent(this,'Navidad')">Navidad</button>
-            <button class="btn btn-outline-primary btn-sm" onclick="selectEvent(this,'Día del Niño')">Día del Niño</button>
-            <button class="btn btn-outline-primary btn-sm" onclick="selectEvent(this,'Día de la Madre')">Día de la Madre</button>
-            <button class="btn btn-outline-primary btn-sm" onclick="selectEvent(this,'Cumpleaños')">Cumpleaños</button>
-            <button class="btn btn-outline-primary btn-sm" onclick="selectEvent(this,'')">Otro</button>
+
+          <!-- ÁREA DE DRAG -->
+          <div id="event-drag-area">
+            <div class="event-chips-grid">
+              <div class="event-chip" draggable="true" data-label="San Valentín" style="--chip-color:#ff6b9d">
+                <span class="chip-emoji">💝</span>
+                <span class="chip-name">San Valentín</span>
+              </div>
+              <div class="event-chip" draggable="true" data-label="Intercambio" style="--chip-color:#4f46e5">
+                <span class="chip-emoji">🎁</span>
+                <span class="chip-name">Intercambio</span>
+              </div>
+              <div class="event-chip" draggable="true" data-label="Navidad" style="--chip-color:#16a34a">
+                <span class="chip-emoji">🎄</span>
+                <span class="chip-name">Navidad</span>
+              </div>
+              <div class="event-chip" draggable="true" data-label="Día del Niño" style="--chip-color:#f59e0b">
+                <span class="chip-emoji">🧸</span>
+                <span class="chip-name">Día del Niño</span>
+              </div>
+              <div class="event-chip" draggable="true" data-label="Día de la Madre" style="--chip-color:#ec4899">
+                <span class="chip-emoji">🌸</span>
+                <span class="chip-name">Día de la Madre</span>
+              </div>
+              <div class="event-chip" draggable="true" data-label="Cumpleaños" style="--chip-color:#8b5cf6">
+                <span class="chip-emoji">🎂</span>
+                <span class="chip-name">Cumpleaños</span>
+              </div>
+            </div>
+
+            <div id="event-drop-zone">
+              <div id="event-drop-hint">
+                <span id="event-drop-icon">🎉</span>
+                <p>Suelta aquí el tipo de evento</p>
+              </div>
+              <div id="event-dropped-preview" class="d-none">
+                <span id="event-preview-emoji" class="preview-big-emoji"></span>
+                <span id="event-preview-label"></span>
+                <button id="event-remove-btn" onclick="clearDroppedEvent()" title="Quitar">✕</button>
+              </div>
+            </div>
           </div>
-          <label class="form-label">Nombre de la celebración</label>
+
+          <label class="form-label mt-3">Nombre de la celebración</label>
           <input type="text" id="input-evento" class="form-control mb-3" placeholder="Ej: Intercambio 2026"/>
           <div class="d-flex gap-2">
             <button class="btn btn-outline-secondary flex-fill" onclick="goStep(3)">← Atrás</button>
