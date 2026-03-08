@@ -4,7 +4,7 @@
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Pinguamigo - Sorteo de regalos</title>
-  <link rel="icon" href="logo1.png" type="image/png">
+  <link rel="icon" href="imagenes/logo1.png" type="image/png">
 
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"/>
   <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet"/>
@@ -16,8 +16,8 @@
 <!-- NAVBAR -->
 <nav class="navbar navbar-expand-lg gd-navbar sticky-top">
     <div class="container">
-      <a class="navbar-brand gd-brand" href="inicio.html">
-        <img src="logo.ico" alt="Logo" width="40" height="40" class="d-inline-block align-text-top">
+      <a class="navbar-brand gd-brand" href="imagenes/inicio.html">
+        <img src="imagenes/logo.ico" alt="Logo" width="40" height="40" class="d-inline-block align-text-top">
         <span class="brand-text">Pinguamigo</span>
       </a>
       <button class="navbar-toggler gd-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu">
@@ -44,11 +44,11 @@
 <!-- HERO -->
 <section class="hero" style="position: relative; overflow: hidden; text-align: left;">
   <img 
-    src="pinguino4.gif" 
+    src="imagenes/pinguino4.gif" 
     alt=""
     style="
       position: absolute;
-      right: 0;
+      right: 200px;
       bottom: 0;
       height: 100%;
       width: auto;
@@ -60,15 +60,15 @@
   <div class="container" style="position: relative; z-index: 1;">
     <div class="row">
       <div class="col-lg-6 col-md-7">
-        <span class="hero-emoji" style="text-align: left;">🎁</span>
+        <span class="hero-emoji" style="text-align: left;">
+          <img src="imagenes/logo.ico" alt="Logo" width="100" height="100" class="d-inline-block align-text-top">
+          Pinguamigo
+        </span>
         <h1>Sorteos de regalos<br/><span>entre amigos</span></h1>
         <p>Organiza tu amigo secreto o sorteo de regalos en minutos. Simple, gratuito y lleno de alegría.</p>
         <div class="hero-btns" style="justify-content: flex-start;">
-          <button class="btn-hero-primary" onclick="window.location.href='index.html'">
+          <button class="btn-hero-outline" onclick="window.location.href='index.html'">
             <i class="bi bi-gift me-2"></i>Crear sorteo gratis
-          </button>
-          <button class="btn-hero-outline">
-            <i class="bi bi-play-circle me-2"></i>Ver cómo funciona
           </button>
         </div>
       </div>
@@ -82,7 +82,6 @@
 <section class="carousel-section" id="festividades">
   <div class="container">
     <div class="text-center mb-5 reveal">
-      <span class="section-tag">Festividades</span>
       <h2 class="section-title">Para cada celebración</h2>
       <p class="section-sub">Elige la ocasión y nosotros hacemos el resto</p>
     </div>
@@ -91,17 +90,18 @@
       <div class="carousel-indicators mb-0">
         <button type="button" data-bs-target="#carousel" data-bs-slide-to="0" class="active"></button>
         <button type="button" data-bs-target="#carousel" data-bs-slide-to="1"></button>
-        <button type="button" data-bs-target="#carousel" data-bs-slide-to="2"></button>
       </div>
       <div class="carousel-inner pb-5">
 
+        <!-- Slide 1 -->
         <div class="carousel-item active">
           <div class="row g-3">
             <div class="col-md-4">
               <div class="fest-card">
-                <div class="fest-bg" style="background:linear-gradient(135deg,#1a472a,#2d6a4f);">🎄</div>
+                <div class="fest-bg" style="background:linear-gradient(135deg,#1a472a,#2d6a4f);">
+                  <img src="imagenes/penguin4.png" alt="" style="width: 150px; height: auto;">
+                </div>
                 <div class="fest-overlay">
-                  <span class="fest-tag">Diciembre</span>
                   <div class="fest-name">Navidad</div>
                   <div class="fest-desc">El sorteo más especial del año</div>
                 </div>
@@ -109,69 +109,38 @@
             </div>
             <div class="col-md-4">
               <div class="fest-card">
-                <div class="fest-bg" style="background:linear-gradient(135deg,#7b2d8b,#3a1a5e);">🎆</div>
-                <div class="fest-overlay">
-                  <span class="fest-tag">Enero</span>
-                  <div class="fest-name">Año Nuevo</div>
-                  <div class="fest-desc">Comienza el año con sorpresas</div>
+                <div class="fest-bg" style="background:linear-gradient(135deg,#b5121b,#e94560);">
+                  <img src="imagenes/penguin.png" alt="" style="width: 150px; height: auto;">
                 </div>
-              </div>
-            </div>
-            <div class="col-md-4">
-              <div class="fest-card">
-                <div class="fest-bg" style="background:linear-gradient(135deg,#b5121b,#e94560);">❤️</div>
                 <div class="fest-overlay">
-                  <span class="fest-tag">Febrero</span>
                   <div class="fest-name">San Valentín</div>
                   <div class="fest-desc">Amor en cada regalo</div>
                 </div>
               </div>
             </div>
-          </div>
-        </div>
-
-        <div class="carousel-item">
-          <div class="row g-3">
             <div class="col-md-4">
               <div class="fest-card">
-                <div class="fest-bg" style="background:linear-gradient(135deg,#b36c00,#e6a817);">🎃</div>
-                <div class="fest-overlay">
-                  <span class="fest-tag">Octubre</span>
-                  <div class="fest-name">Halloween</div>
-                  <div class="fest-desc">El susto más divertido</div>
+                <div class="fest-bg" style="background:linear-gradient(135deg,#005f73,#0a9396);">
+                  <img src="imagenes/penguin3.png" alt="" style="width: 150px; height: auto;">
                 </div>
-              </div>
-            </div>
-            <div class="col-md-4">
-              <div class="fest-card">
-                <div class="fest-bg" style="background:linear-gradient(135deg,#005f73,#0a9396);">🎂</div>
                 <div class="fest-overlay">
-                  <span class="fest-tag">Todo el año</span>
                   <div class="fest-name">Cumpleaños</div>
                   <div class="fest-desc">Celebra a quien más quieres</div>
                 </div>
               </div>
             </div>
-            <div class="col-md-4">
-              <div class="fest-card">
-                <div class="fest-bg" style="background:linear-gradient(135deg,#3d0c11,#9b1c2e);">🫂</div>
-                <div class="fest-overlay">
-                  <span class="fest-tag">Especial</span>
-                  <div class="fest-name">Amigo Secreto</div>
-                  <div class="fest-desc">El clásico de siempre</div>
-                </div>
-              </div>
-            </div>
           </div>
         </div>
 
+        <!-- Slide 2 -->
         <div class="carousel-item">
           <div class="row g-3">
             <div class="col-md-4">
               <div class="fest-card">
-                <div class="fest-bg" style="background:linear-gradient(135deg,#006d77,#83c5be);">🌸</div>
+                <div class="fest-bg" style="background:linear-gradient(135deg,#006d77,#83c5be);">
+                  <img src="imagenes/penguin2.png" alt="" style="width: 150px; height: auto;">
+                </div>
                 <div class="fest-overlay">
-                  <span class="fest-tag">Mayo</span>
                   <div class="fest-name">Día de la Madre</div>
                   <div class="fest-desc">Para la persona más especial</div>
                 </div>
@@ -179,19 +148,20 @@
             </div>
             <div class="col-md-4">
               <div class="fest-card">
-                <div class="fest-bg" style="background:linear-gradient(135deg,#1b4332,#52b788);">🌿</div>
-                <div class="fest-overlay">
-                  <span class="fest-tag">Junio</span>
-                  <div class="fest-name">Día del Padre</div>
-                  <div class="fest-desc">Sorprende al papá especial</div>
+                <div class="fest-bg" style="background:linear-gradient(135deg,#1b4332,#52b788);">
+                  <img src="imagenes/penguin6.png" alt="" style="width: 150px; height: auto;">
+                </div>
+                <div class="fest-overlay">                  <div class="fest-name">Día del Niño</div>
+                  <div class="fest-desc">Sorprende al pequeño especial</div>
                 </div>
               </div>
             </div>
             <div class="col-md-4">
               <div class="fest-card">
-                <div class="fest-bg" style="background:linear-gradient(135deg,#370617,#e85d04);">🎉</div>
+                <div class="fest-bg" style="background:linear-gradient(135deg,#370617,#e85d04);">
+                  <img src="imagenes/penguin5.png" alt="" style="width: 150px; height: auto;">
+                </div>
                 <div class="fest-overlay">
-                  <span class="fest-tag">Personalizado</span>
                   <div class="fest-name">Tu ocasión</div>
                   <div class="fest-desc">Crea tu propio sorteo</div>
                 </div>
@@ -216,7 +186,6 @@
 <section class="team-section" id="equipo">
   <div class="container">
     <div class="text-center mb-5 reveal">
-      <span class="section-tag">El equipo</span>
       <h2 class="section-title">Los amigos detrás del proyecto</h2>
       <p class="section-sub">Un grupo de amigos que quería regalar mejor</p>
     </div>
@@ -224,29 +193,19 @@
 
       <div class="col-sm-6 col-lg-4 reveal">
         <div class="member-card">
-          <div class="member-avatar">👩‍💻</div>
-          <div class="member-name">Ana García</div>
-          <div class="member-role">Diseño & UX</div>
-          <div class="member-bio">Hizo que todo se vea bonito y sea fácil de usar.</div>
-          <div class="member-socials">
-            <a href="#" class="soc-btn"><i class="bi bi-instagram"></i></a>
-            <a href="#" class="soc-btn"><i class="bi bi-linkedin"></i></a>
-            <a href="#" class="soc-btn"><i class="bi bi-github"></i></a>
-          </div>
+          <div class="member-avatar"></div>
+          <div class="member-name">Sara Alexandra Chamorro Cuevas</div>
+          <div class="member-role">ID: 501767</div>
+          <div class="member-bio">Encarga del diseño, la marca y la lindura de la página</div>
         </div>
       </div>
 
       <div class="col-sm-6 col-lg-4 reveal">
         <div class="member-card">
-          <div class="member-avatar">👨‍💻</div>
-          <div class="member-name">Carlos López</div>
-          <div class="member-role">Backend Dev</div>
-          <div class="member-bio">El mago que hace que los sorteos sean justos y seguros.</div>
-          <div class="member-socials">
-            <a href="#" class="soc-btn"><i class="bi bi-instagram"></i></a>
-            <a href="#" class="soc-btn"><i class="bi bi-linkedin"></i></a>
-            <a href="#" class="soc-btn"><i class="bi bi-github"></i></a>
-          </div>
+          <div class="member-avatar"></div>
+          <div class="member-name">Juan Manuel Frias Cortés</div>
+          <div class="member-role">ID: 369829</div>
+          <div class="member-bio">Encargado en hacer que siempre te toque a la persona que quieres</div>
         </div>
       </div>
 
@@ -258,7 +217,7 @@
 <!-- FAQ -->
 <section class="faq-section" id="faq" style="position: relative; overflow: hidden;">
   <img 
-    src="pinguino2.gif" 
+    src="imagenes/pinguino2.gif" 
     alt="" 
     style="
       position: absolute;
@@ -274,7 +233,6 @@
     <div class="row justify-content-center">
       <div class="col-lg-7">
         <div class="text-center mb-5 reveal">
-          <span class="section-tag">FAQ</span>
           <h2 class="section-title">Preguntas frecuentes</h2>
           <p class="section-sub">Todo lo que necesitas saber antes de empezar</p>
         </div>
@@ -318,33 +276,6 @@
               </div>
             </div>
           </div>
-
-          <div class="accordion-item">
-            <h2 class="accordion-header">
-              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#q4">
-                ¿Cómo se avisa a los participantes?
-              </button>
-            </h2>
-            <div id="q4" class="accordion-collapse collapse" data-bs-parent="#faq">
-              <div class="accordion-body">
-                Cada participante recibe un enlace único por correo o por WhatsApp. Al abrirlo, solo ve su asignación. Nadie más puede ver la de los demás.
-              </div>
-            </div>
-          </div>
-
-          <div class="accordion-item">
-            <h2 class="accordion-header">
-              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#q5">
-                ¿Puedo agregar una lista de deseos?
-              </button>
-            </h2>
-            <div id="q5" class="accordion-collapse collapse" data-bs-parent="#faq">
-              <div class="accordion-body">
-                Sí. Cada participante puede agregar su lista de deseos al aceptar la invitación. Quien le toca regalarte verá esa lista como guía. ¡Adiós a los regalos que no se usan!
-              </div>
-            </div>
-          </div>
-
         </div>
       </div>
     </div>
@@ -357,43 +288,13 @@
   <div class="container">
     <div class="row g-4">
       <div class="col-lg-4">
-        <div class="footer-brand">Sorteo<span>Fest</span></div>
-        <div class="footer-tagline">Porque regalar es el mejor idioma del amor.</div>
-        <div class="d-flex gap-2 mt-3">
-          <a href="#" class="soc-btn"><i class="bi bi-instagram"></i></a>
-          <a href="#" class="soc-btn"><i class="bi bi-twitter-x"></i></a>
-          <a href="#" class="soc-btn"><i class="bi bi-tiktok"></i></a>
-        </div>
+        <div class="footer-brand"><span>Pinguamigo</span></div>
+        <div class="footer-tagline">Entre amigos nos entendemos y más con regalos</div>
       </div>
-      <div class="col-6 col-lg-2 offset-lg-2">
-        <div class="footer-heading">Producto</div>
-        <ul class="footer-links">
-          <li><a href="#">Cómo funciona</a></li>
-          <li><a href="#">Festividades</a></li>
-          <li><a href="#">Precios</a></li>
-        </ul>
-      </div>
-      <div class="col-6 col-lg-2">
-        <div class="footer-heading">Empresa</div>
-        <ul class="footer-links">
-          <li><a href="#">Nosotros</a></li>
-          <li><a href="#">El equipo</a></li>
-          <li><a href="#">Contacto</a></li>
-        </ul>
-      </div>
-      <div class="col-6 col-lg-2">
-        <div class="footer-heading">Legal</div>
-        <ul class="footer-links">
-          <li><a href="#">Privacidad</a></li>
-          <li><a href="#">Términos</a></li>
-          <li><a href="#">Cookies</a></li>
-        </ul>
-      </div>
-    </div>
     <hr class="footer-divider"/>
     <div class="d-flex flex-wrap justify-content-between gap-2">
-      <div class="footer-copy">© 2025 SorteoFest · Hecho con ❤️ entre amigos</div>
-      <div class="footer-copy">México · Argentina · España</div>
+      <div class="footer-copy">Hecho como mini proyecto para la clase de Tecnologías Web · UAA ISC 6A</div>
+      <div class="footer-copy">México · Aguascalientes</div>
     </div>
   </div>
 </footer>

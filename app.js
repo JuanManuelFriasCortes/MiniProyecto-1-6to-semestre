@@ -10,6 +10,14 @@ let dragSrcEl = null;
 // ─────────────────────────────────────────
 // NAVEGACIÓN DE PÁGINAS
 // ─────────────────────────────────────────
+
+window.addEventListener('DOMContentLoaded', () => {
+  const params = new URLSearchParams(window.location.search);
+  if (params.get('page') === 'eventos') {
+    document.getElementById('page-eventos').classList.remove('d-none');
+  }
+});
+
 window.addEventListener('DOMContentLoaded', () => {
   const params = new URLSearchParams(window.location.search);
   if (params.get('page') === 'eventos') {
@@ -202,29 +210,93 @@ function selectEvent(btn, type) {
 // ─────────────────────────────────────────
 // STEP 5 – FECHA
 // ─────────────────────────────────────────
+
+const EVENT_SUGGESTIONS = {
+  navidad:  [
+    { month: 11, day: 24, label: '🎄 Noche Buena'               },
+    { month: 11, day: 25, label: '🎁 Navidad'                   },
+    { month: 11, day: 20, label: '🎅 Posada previa a Navidad'   },
+  ],
+  valentin: [
+    { month:  1, day: 14, label: '💝 Día de San Valentín'       },
+    { month:  1, day: 13, label: '💌 Víspera de San Valentín'   },
+    { month:  1, day:  8, label: '🌹 Fin de semana romántico'   },
+  ],
+  nino: [
+    { month:  3, day: 30, label: '🧸 Día del Niño'              },
+    { month:  3, day: 29, label: '🎠 Víspera Día del Niño'      },
+    { month:  3, day: 27, label: '🎈 Festejo del fin de semana' },
+  ],
+  madre: [
+    { month:  4, day: 10, label: '🌸 Día de la Madre'           },
+    { month:  4, day:  9, label: '💐 Festejo previo'            },
+    { month:  4, day:  4, label: '🌷 Fin de semana especial'    },
+  ],
+};
+
+const EVENT_KEYWORDS = {
+  navidad:  ['navidad'],
+  valentin: ['valentín','valentin','san val'],
+  nino:     ['niño','nino'],
+  madre:    ['madre'],
+};
+
+function getEventKey(name) {
+  const lower = name.toLowerCase();
+  return Object.keys(EVENT_KEYWORDS).find(k =>
+    EVENT_KEYWORDS[k].some(kw => lower.includes(kw))
+  ) || null;
+}
+
+function getSmartDates(eventName) {
+  const today = new Date();
+  today.setHours(0, 0, 0, 0);
+
+  const key = getEventKey(eventName);
+  if (key) {
+    return EVENT_SUGGESTIONS[key].map(({ month, day, label }) => {
+      let d = new Date(today.getFullYear(), month, day);
+      if (d <= today) d = new Date(today.getFullYear() + 1, month, day);
+      return { date: d, label };
+    });
+  }
+
+  // Genérico: 3 sábados próximos
+  const nextSat = new Date(today);
+  nextSat.setDate(today.getDate() + ((6 - today.getDay() + 7) % 7 || 7));
+  const sat2 = new Date(nextSat); sat2.setDate(nextSat.getDate() + 7);
+  const in3w = new Date(today);   in3w.setDate(today.getDate() + 21);
+  return [
+    { date: nextSat, label: '📅 Próximo sábado'  },
+    { date: sat2,    label: '📅 Sábado siguiente' },
+    { date: in3w,    label: '🗓️ En tres semanas'  },
+  ];
+}
+
 function buildQuickDates() {
-  const nombre = document.getElementById('input-evento').value || 'el evento';
+  const nombre = document.getElementById('input-evento').value.trim() || 'el evento';
   document.getElementById('fecha-title').textContent = '¿Cuándo se celebra ' + nombre + '?';
 
   const container = document.getElementById('quick-dates');
   container.innerHTML = '';
-  const today = new Date();
-  const fmt   = new Intl.DateTimeFormat('es-MX', { weekday:'long', year:'numeric', month:'long', day:'numeric' });
+  const fmt = new Intl.DateTimeFormat('es-MX', { weekday:'long', year:'numeric', month:'long', day:'numeric' });
 
-  for (let i = 1; i <= 3; i++) {
-    const d = new Date(today);
-    d.setDate(today.getDate() + i * 7);
-    const btn = document.createElement('button');
-    btn.className = 'btn btn-outline-primary text-start quick-date-btn';
-    btn.textContent = fmt.format(d);
-    btn.dataset.val  = d.toISOString().split('T')[0];
+  getSmartDates(nombre).forEach(({ date, label }) => {
+    const isoVal = date.toISOString().split('T')[0];
+    const btn    = document.createElement('button');
+    btn.className   = 'btn btn-outline-primary text-start quick-date-btn d-flex flex-column';
+    btn.dataset.val = isoVal;
+    btn.innerHTML   = `
+      <span style="font-size:.72rem;opacity:.7;font-weight:600;line-height:1.4">${label}</span>
+      <span>${fmt.format(date)}</span>
+    `;
     btn.onclick = () => {
       document.querySelectorAll('.quick-date-btn').forEach(b => b.classList.remove('active'));
       btn.classList.add('active');
-      document.getElementById('input-fecha').value = btn.dataset.val;
+      document.getElementById('input-fecha').value = isoVal;
     };
     container.appendChild(btn);
-  }
+  });
 }
 
 // ─────────────────────────────────────────
