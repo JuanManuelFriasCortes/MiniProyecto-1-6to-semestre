@@ -10,6 +10,13 @@ let dragSrcEl = null;
 // ─────────────────────────────────────────
 // NAVEGACIÓN DE PÁGINAS
 // ─────────────────────────────────────────
+window.addEventListener('DOMContentLoaded', () => {
+  const params = new URLSearchParams(window.location.search);
+  if (params.get('page') === 'eventos') {
+    document.getElementById('page-eventos').classList.remove('d-none');
+  }
+});
+
 function showPage(page) {
   document.getElementById('page-inicio').classList.add('d-none');
   document.getElementById('page-eventos').classList.add('d-none');
